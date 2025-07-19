@@ -1,3 +1,33 @@
+/* box1 */
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* top-left alignment */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dropdown-label {
+  color: #1E90FF;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.category-dropdown {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  color: #333;
+  min-width: 180px;
+}
+
+.summary-container {
+  text-align: center; /* center the summary text */
+  font-size: 1.1rem;
+  color: #333;
+}
+/* Dashboard.css */
 .container {
     display: grid;
     grid-template-columns: 50% 50%;

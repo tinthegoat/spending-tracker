@@ -1,7 +1,9 @@
+import Ract, { useState } from 'react';
 import './Dashboard.css';
-import FiltersBox from './Box1';  // Adjust path if Box1.jsx is in a different folder
+import Box1 from './Box1';  // Adjust path if Box1.jsx is in a different folder
 
 function Dashboard() {
+  
   return (
     <div>
       <h2>Spending Dashboard</h2>
@@ -10,11 +12,9 @@ function Dashboard() {
       <div classname="dashboard-content">
         <div classname="container">
           
-          <FiltersBox
-          onTimeframeChange={(value) => console.log("Timeframe changed:", value)}
-          onMonthChange={(value) => console.log("Month changed:", value)}
-          onAddCategory={(newCat) => console.log("Add category:", newCat)}
-          extraCategories={[]}  />
+          
+                     
+          <Box1 />
           
           <div className="box box2">Total Spending Overview</div>
           <div className="box box3">Line Chart of Spending</div>

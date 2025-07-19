@@ -1,104 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function FiltersBox({ onTimeframeChange, onMonthChange, onAddCategory, extraCategories }) {
-  const [newCategory, setNewCategory] = useState("");
-  const [timeframe, setTimeframe] = useState("daily");
-  const [selectedMonth, setSelectedMonth] = useState("");
+function Box1() {
+  const [records, setRecords] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [totalSpending, setTotalSpending] = useState(0);
+  const [categorySpending, setCategorySpending] = useState(0);
 
-  const handleAddCategory = () => {
-    if (newCategory.trim()) {
-      onAddCategory(newCategory.trim());
-      setNewCategory("");
+  useEffect(() => {
+    const stored = localStorage.getItem("spendingRecords");
+    const data = stored ? JSON.parse(stored) : [];
+    setRecords(data);
+
+    const uniqueCats = [...new Set(data.map((rec) => rec.category).filter(Boolean))];
+    setCategories(uniqueCats);
+
+    const total = data.reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
+    setTotalSpending(total);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCategory) {
+      setCategorySpending(0);
+      return;
     }
-  };
+    const totalCat = records
+      .filter((rec) => rec.category === selectedCategory)
+      .reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
+    setCategorySpending(totalCat);
+  }, [selectedCategory, records]);
 
   return (
     <div className="box">
-      <h3 className="title">Filters & Add Category</h3>
+      <h3 className="title">Spending Summary (All Time)</h3>
 
-      {/* Timeframe selector */}
-      <div>
-        <label>
-          <input
-            type="radio"
-            value="daily"
-            checked={timeframe === "daily"}
-            onChange={() => {
-              setTimeframe("daily");
-              onTimeframeChange("daily");
-            }}
-          />
-          Daily
+      {/* Dropdown container aligned top-left */}
+      <div className="dropdown-container">
+        <label htmlFor="categoryDropdown" className="dropdown-label">
+          Select Category:
         </label>
-
-        <label style={{ marginLeft: 15 }}>
-          <input
-            type="radio"
-            value="weekly"
-            checked={timeframe === "weekly"}
-            onChange={() => {
-              setTimeframe("weekly");
-              onTimeframeChange("weekly");
-            }}
-          />
-          Weekly
-        </label>
-
-        <label style={{ marginLeft: 15 }}>
-          <input
-            type="radio"
-            value="monthly"
-            checked={timeframe === "monthly"}
-            onChange={() => {
-              setTimeframe("monthly");
-              onTimeframeChange("monthly");
-            }}
-          />
-          Monthly
-        </label>
+        <select
+          id="categoryDropdown"
+          className="category-dropdown"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">-- All Categories --</option>
+          {categories.map((cat, idx) => (
+            <option key={idx} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {/* Month picker */}
-      <div style={{ marginTop: 20 }}>
-        <label className="label" htmlFor="monthPicker">Select Month:</label>
-        <input
-          id="monthPicker"
-          type="month"
-          value={selectedMonth}
-          onChange={(e) => {
-            setSelectedMonth(e.target.value);
-            onMonthChange(e.target.value);
-          }}
-        />
-      </div>
+      {/* Summary container centered */}
+      <div className="summary-container">
+        <p>
+          <strong>Total Spending:</strong> ${totalSpending.toFixed(2)}
+        </p>
 
-      {/* Add extra category */}
-      <div style={{ marginTop: 30 }}>
-        <label className="label" htmlFor="newCategoryInput">Add New Category:</label>
-        <div>
-          <input
-            id="newCategoryInput"
-            type="text"
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-            placeholder="Category name"
-            className="input"
-          />
-          <button onClick={handleAddCategory} className="btn-add">
-            Add
-          </button>
-        </div>
-
-        {extraCategories.length > 0 && (
-          <ul className="category-list">
-            {extraCategories.map((cat, idx) => (
-              <li key={idx}>{cat}</li>
-            ))}
-          </ul>
+        {selectedCategory && (
+          <p>
+            <strong>Total spent on {selectedCategory}:</strong> ${categorySpending.toFixed(2)}
+          </p>
         )}
       </div>
     </div>
   );
 }
 
-export default FiltersBox;
+export default Box1;
