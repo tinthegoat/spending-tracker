@@ -23,8 +23,7 @@
 }
 
 .summary-container {
-  text-align: center; /* center the summary text */
-  font-size: 1.1rem;
+  text-align: left; /* center the summary text */
   color: #333;
 }
 /* Dashboard.css */

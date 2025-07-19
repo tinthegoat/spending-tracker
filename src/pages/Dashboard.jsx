@@ -1,7 +1,7 @@
 import Ract, { useState } from 'react';
 import './Dashboard.css';
-import Box1 from './Box1';  // Adjust path if Box1.jsx is in a different folder
-
+import Box1 from './box1';
+import Box3 from './box3';
 function Dashboard() {
   
   return (
@@ -18,6 +18,7 @@ function Dashboard() {
           
           <div className="box box2">Total Spending Overview</div>
           <div className="box box3">Line Chart of Spending</div>
+          <Box3 />
           <div className="box box4">Pie Chart of Spending by Category</div>
         </div>   
       </div>

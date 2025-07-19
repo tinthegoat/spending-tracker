@@ -32,7 +32,7 @@ function Box1() {
 
   return (
     <div className="box">
-      <h3 className="title">Spending Summary (All Time)</h3>
+      <h3 className="title">Spending Summary (All Time) Base on Categories</h3>
 
       {/* Dropdown container aligned top-left */}
       <div className="dropdown-container">
