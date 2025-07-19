@@ -1,0 +1,53 @@
+[
+    {
+        "spending_id": 1,
+        "category": "Groceries",
+        "description": "Weekly grocery shopping"
+    },
+    {
+        "spending_id": 2,
+        "category": "Utilities",
+        "description": "Electricity bill for September"
+    },
+    {
+        "spending_id": 3,
+        "category": "Transportation",
+        "description": "Gas refill"
+    },
+    {
+        "spending_id": 4,
+        "category": "Entertainment",
+        "description": "Movie night and snacks"
+    },
+    {
+        "spending_id": 5,
+        "category": "Dining Out",
+        "description": "Lunch with friends"
+    }
+    },
+    {
+        "spending_id": 6,
+        "category": "Health",
+        "description": "Gym membership fee"
+    },
+    {
+        "spending_id": 7,
+        "category": "Shopping",
+        "description": "Clothing purchase"
+    },
+    {
+        "spending_id": 8,
+        "category": "Travel",
+        "description": "Weekend getaway expenses"
+    },
+    {
+        "spending_id": 9,
+        "category": "Education",
+        "description": "Online course subscription"
+    },
+    {
+        "spending_id": 10,
+        "category": "Miscellaneous",
+        "description": "Gift for a friend"
+    }   
+]
