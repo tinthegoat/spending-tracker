@@ -1,17 +1,23 @@
+import React, { useState } from 'react';
 import './Dashboard.css';
-
+import Box1 from './box1';
+import Box3 from './box3';
+import Box4 from './box4';
 function Dashboard() {
+  
   return (
     <div>
-      <h2>Spending Dashboard</h2>
       {/* Add charts and summary here */}
-      <p>This is where the user sees spending analytics.</p>
-      <div className="dashboard-content">
-        <div classname="container">
-          <div className="box box1">Box1</div>
-          <div className="box box2">Box2</div>
-          <div className="box box3">Box3</div>
-          <div className="box box4">Box4</div>
+      <div classname="dashboard-content">
+        <div classname="container">         
+                     
+          <Box1 />
+          <div className="box box2">Total Spending Overview</div>
+          {/* Line Chart of Spending */}
+          <Box3 />
+          {/* Pie Chart of Spending by Category */}
+          <Box4 />  
+                  
         </div>   
       </div>
     </div>
