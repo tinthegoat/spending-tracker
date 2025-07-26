@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './Dashboard.css';
 import TotalBox from './TotalBox';
@@ -7,16 +6,10 @@ function Dashboard() {
 
   return (
     <div>
-<<<<<<< HEAD
-      <div classname="dashboard-content">
-        <div classname="container">         
-                     
-=======
       {/* Add charts and summary here */}
       <div className="dashboard-content">
 
         <div className="container">         
->>>>>>> origin
           <TotalBox />
           <Chart />
         </div>   

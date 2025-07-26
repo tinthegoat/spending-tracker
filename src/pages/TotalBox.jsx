@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import ListItem from "./List_item";
 function TotalBox() {
   const [records, setRecords] = useState([]);
   const [categories, setCategories] = useState([]);
