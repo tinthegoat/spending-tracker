@@ -3,9 +3,9 @@ import React from 'react';
 import './Dashboard.css';
 import TotalBox from './TotalBox';
 import Chart from './Line_Chart';
-import ListItem from './List_item';
+import PieChartComponent from './Pie_chart';
 function Dashboard() {
-
+  
   
 
   return (
@@ -15,8 +15,8 @@ function Dashboard() {
 
         <div className="container">         
           <TotalBox />
-          <ListItem />
           <Chart />
+          <PieChartComponent />
         </div>   
       </div>
     </div>
