@@ -3,7 +3,10 @@ import React from 'react';
 import './Dashboard.css';
 import TotalBox from './TotalBox';
 import Chart from './Line_Chart';
+import ListItem from './List_item';
 function Dashboard() {
+
+  
 
   return (
     <div>
@@ -12,6 +15,7 @@ function Dashboard() {
 
         <div className="container">         
           <TotalBox />
+          <ListItem />
           <Chart />
         </div>   
       </div>
