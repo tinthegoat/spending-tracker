@@ -1,89 +1,32 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import React from "react";
 
-const SpendingTable = ({ data, onDelete }) => {
-  const searchRef = useRef();
-  const [filteredData, setFilteredData] = useState(data);
-
-  useEffect(() => {
-    setFilteredData(data);
-  }, [data]);
-
-  const handleSearch = () => {
-    const keyword = searchRef.current.value.toLowerCase();
-    const filtered = data.filter(
-      (item) =>
-        item.description.toLowerCase().includes(keyword) ||
-        item.category.toLowerCase().includes(keyword)
-    );
-    setFilteredData(filtered);
-  };
-
-  // Sort by date (ascending)
-  const sortByDateAsc = () => {
-    const sorted = [...filteredData].sort(
-      (a, b) => new Date(a.date) - new Date(b.date)
-    );
-    setFilteredData(sorted);
-  };
-
-  // Sort by date (descending)
-  const sortByDateDesc = () => {
-    const sorted = [...filteredData].sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-    setFilteredData(sorted);
-  };
+const DataTable = ({ data }) => {
+  const sortedData = [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
-    <div style={{ marginTop: "20px" }}>
-      <div style={{ marginBottom: "10px" }}>
-        <input type="text" placeholder="Search by description or category..." ref={searchRef} />
-        <Button
-          onClick={handleSearch}
-          variant="contained"
-          size="small"
-          style={{ marginLeft: "10px" }}
-        >
-          Search
-        </Button>
-        &nbsp;&nbsp; Sort by Date:
-        <Button onClick={sortByDateAsc}>🔼</Button>
-        <Button onClick={sortByDateDesc}>🔽</Button>
-      </div>
-
-      <table border="1" width="100%" style={{ borderCollapse: "collapse" }}>
+    <div>
+      <table style={{ width: "100%", marginTop: "10px", borderCollapse: "collapse" }}>
         <thead>
           <tr>
-            <th>#</th>
+            <th>Date</th>
             <th>Description</th>
             <th>Category</th>
-            <th>Date</th>
-            <th>Amount</th>
-            {onDelete && <th>Action</th>}
+            <th>Amount ($)</th>
           </tr>
         </thead>
         <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.map((item, index) => (
-              <tr key={item.id}>
-                <td>{index + 1}</td>
+          {sortedData.length > 0 ? (
+            sortedData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.date}</td>
                 <td>{item.description}</td>
                 <td>{item.category}</td>
-                <td>{item.date}</td>
-                <td>${Number(item.amount).toFixed(2)}</td>
-                {onDelete && (
-                  <td>
-                    <Button color="error" onClick={() => onDelete(item.id)}>
-                      Delete
-                    </Button>
-                  </td>
-                )}
+                <td>{Number(item.amount).toFixed(2)}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>
+              <td colSpan="4" style={{ textAlign: "center" }}>
                 No records found
               </td>
             </tr>
@@ -94,4 +37,4 @@ const SpendingTable = ({ data, onDelete }) => {
   );
 };
 
-export default SpendingTable;
+export default DataTable;

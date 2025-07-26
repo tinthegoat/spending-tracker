@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TotalBox from './TotalBox';
 import Chart from './Chart';
+import './Dashboard.css'; // Assuming you have a CSS file for styling
 
 function Dashboard() {
   const [filteredData, setFilteredData] = useState([]);
@@ -14,7 +15,6 @@ function Dashboard() {
           setSelectedMonth(month);
         }}
       />
-      <Chart filteredData={filteredData} selectedMonth={selectedMonth} />
     </div>
   );
 }

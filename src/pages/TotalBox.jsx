@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Button } from "@mui/material";
 import { PieChart, Pie, Cell, Tooltip as ReTooltip, Legend } from "recharts";
+import Chart from "./Chart";
+import "./TotalBox.css"; 
 
 function TotalBox({ onFilteredData }) {
   const [records, setRecords] = useState([]);
@@ -43,7 +45,7 @@ function TotalBox({ onFilteredData }) {
     const totalCat = filtered.reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
     setCategorySpending(totalCat);
 
-    // ✅ Send filtered data to LineChart for monthly view
+    // Send filtered data to LineChart for monthly view
     if (onFilteredData) {
       onFilteredData(filtered);
     }
@@ -83,12 +85,12 @@ function TotalBox({ onFilteredData }) {
     setTotalSpending(total);
   };
 
-  // ✅ Extract unique months from data
+  // Extract unique months from data
   const uniqueMonths = [
     ...new Set(records.map((rec) => rec.date.slice(0, 7))) // YYYY-MM format
   ];
 
-  // ✅ Pie chart data for selected month
+  // Pie chart data for selected month
   const pieData = categories.map((cat) => {
     const total = filteredData
       .filter((item) => item.category === cat)
@@ -97,112 +99,115 @@ function TotalBox({ onFilteredData }) {
   }).filter((item) => item.value > 0);
 
   return (
+    <>
     <div className="box">
-      <h3 className="title">Spending Summary (Filtered by Month & Category)</h3>
+      <div className="totalBox">
+        <h3 className="title">Spending Summary (Filtered by Month & Category)</h3>
 
-      {/* ✅ Month Dropdown */}
-      <div className="dropdown-container" style={{ marginBottom: "10px" }}>
-        <label htmlFor="monthDropdown" className="dropdown-label">
-          Select Month:
-        </label>
-        <select
-          id="monthDropdown"
-          className="category-dropdown"
-          value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
-        >
-          <option value="">-- All Months --</option>
-          {uniqueMonths.map((month, idx) => (
-            <option key={idx} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
-      </div>
+        {/* Month Dropdown */}
+        <div className="dropdown-container" style={{ marginBottom: "10px" }}>
+          <label htmlFor="monthDropdown" className="dropdown-label">
+            Select Month:
+          </label>
+          <select
+            id="monthDropdown"
+            className="category-dropdown"
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+          >
+            <option value="">-- All Months --</option>
+            {uniqueMonths.map((month, idx) => (
+              <option key={idx} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      {/* ✅ Category Dropdown */}
-      <div className="dropdown-container">
-        <label htmlFor="categoryDropdown" className="dropdown-label">
-          Select Category:
-        </label>
-        <select
-          id="categoryDropdown"
-          className="category-dropdown"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">-- All Categories --</option>
-          {categories.map((cat, idx) => (
-            <option key={idx} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
+        {/* ✅ Category Dropdown */}
+        <div className="dropdown-container">
+          <label htmlFor="categoryDropdown" className="dropdown-label">
+            Select Category:
+          </label>
+          <select
+            id="categoryDropdown"
+            className="category-dropdown"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">-- All Categories --</option>
+            {categories.map((cat, idx) => (
+              <option key={idx} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="summary-container">
-        <p>
-          <strong>Total Spending:</strong> ${totalSpending.toFixed(2)}
-        </p>
-        {(selectedCategory || selectedMonth) && (
+        <div className="summary-container">
           <p>
-            <strong>Filtered Spending:</strong> ${categorySpending.toFixed(2)}
+            <strong>Total Spending:</strong> ${totalSpending.toFixed(2)}
           </p>
-        )}
-      </div>
+          {(selectedCategory || selectedMonth) && (
+            <p>
+              <strong>Filtered Spending:</strong> ${categorySpending.toFixed(2)}
+            </p>
+          )}
+        </div>
 
-      {/* ✅ Search + Sort Controls */}
-      <div style={{ marginTop: "15px", marginBottom: "10px" }}>
-        <input type="text" placeholder="Search..." ref={searchRef} />
-        <Button onClick={handleSearch} variant="contained" size="small" style={{ marginLeft: "10px" }}>
-          Search
-        </Button>
-        &nbsp;&nbsp; Sort by Date:
-        <Button onClick={sortByDateAsc}>🔼</Button>
-        <Button onClick={sortByDateDesc}>🔽</Button>
-      </div>
+        {/* Search + Sort Controls */}
+        <div style={{ marginTop: "15px", marginBottom: "10px" }}>
+          <input type="text" placeholder="Search..." ref={searchRef} />
+          <Button onClick={handleSearch} variant="contained" size="small" style={{ marginLeft: "10px" }}>
+            Search
+          </Button>
+          &nbsp;&nbsp; Sort by Date:
+          <Button onClick={sortByDateAsc}>🔼</Button>
+          <Button onClick={sortByDateDesc}>🔽</Button>
+        </div>
 
-      {/* ✅ Data Table */}
-      <table border="1" width="100%" style={{ borderCollapse: "collapse", marginTop: "10px" }}>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.length > 0 ? (
-            filteredData.map((item, index) => (
-              <tr key={item.id}>
-                <td>{index + 1}</td>
-                <td>{item.description}</td>
-                <td>{item.category}</td>
-                <td>{item.date}</td>
-                <td>${Number(item.amount).toFixed(2)}</td>
-                <td>
-                  <Button color="error" onClick={() => handleDelete(item.id)}>
-                    Delete
-                  </Button>
+        {/* Data Table */}
+        <table border="1" width="100%" style={{ borderCollapse: "collapse", marginTop: "10px" }}>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.length > 0 ? (
+              filteredData.map((item, index) => (
+                <tr key={item.id}>
+                  <td>{index + 1}</td>
+                  <td>{item.description}</td>
+                  <td>{item.category}</td>
+                  <td>{item.date}</td>
+                  <td>${Number(item.amount).toFixed(2)}</td>
+                  <td>
+                    <Button color="error" onClick={() => handleDelete(item.id)}>
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" style={{ textAlign: "center" }}>
+                  No records found
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>
-                No records found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
 
-      {/* ✅ Pie Chart */}
+      {/* Pie Chart */}
       {pieData.length > 0 && (
-        <div style={{ width: "100%", height: 250, marginTop: "15px" }}>
+        <div className="pie-chart" style={{ width: "100%", height: 250, marginTop: "15px" }}>
           <PieChart width={400} height={250}>
             <Pie
               data={pieData}
@@ -223,7 +228,11 @@ function TotalBox({ onFilteredData }) {
           </PieChart>
         </div>
       )}
-    </div>
+      </div>
+
+      <Chart filteredData={filteredData} selectedMonth={selectedMonth} />
+      
+      </>
   );
 }
 
