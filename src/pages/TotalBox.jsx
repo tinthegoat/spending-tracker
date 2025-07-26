@@ -13,7 +13,7 @@ function TotalBox({ onFilteredData }) {
 
   const searchRef = useRef();
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AA00FF", "#FF4444"];
+  const COLORS = ["#56abf6ff", "#4cbca8ff", "#f8d17bff", "#fea376ff", "#cd7af6ff", "#f98080ff"];
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("journalData")) || [];
@@ -200,29 +200,6 @@ function TotalBox({ onFilteredData }) {
         </tbody>
       </table>
 
-      {/* ✅ Pie Chart */}
-      {pieData.length > 0 && (
-        <div style={{ width: "100%", height: 250, marginTop: "15px" }}>
-          <PieChart width={400} height={250}>
-            <Pie
-              data={pieData}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={80}
-              fill="#8884d8"
-              label
-            >
-              {pieData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <ReTooltip />
-            <Legend />
-          </PieChart>
-        </div>
-      )}
     </div>
   );
 }

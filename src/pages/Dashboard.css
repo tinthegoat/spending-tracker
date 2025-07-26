@@ -1,75 +1,115 @@
-.container {
-  display: flex;
-  flex-direction: column; /* Stack items on top of each other on small screens */
-  gap: 20px; /* Adds space between the stacked items */
-  padding: 10px;
+/* Main Dashboard Layout */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column on mobile/small screens */
+  gap: 24px;
+  padding: 24px;
+  background-color: #f9fafb; /* Light gray background for the page */
 }
 
-/* This is the style for each individual box (summary and chart) */
-.box {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  /* The 'flex: 1' tells the boxes to grow and share space on larger screens */
-  flex: 1; 
-}
-
-/* Media Query for larger screens (like tablets and laptops).
-   If the screen width is 768px or more, these styles will override the defaults.
-*/
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row; /* This places the items side-by-side */
+/* Two-column layout for larger screens */
+@media (min-width: 1024px) {
+  .dashboard-layout {
+    /* Left column is 1.5 times the size of the right column */
+    grid-template-columns: 1.5fr 1fr;
   }
 }
 
+/* General styles for all panels */
+.dashboard-panel {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
 
-/* --- Your existing styles for dropdowns, etc. can remain below --- */
-
-.dropdown-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
+.dashboard-panel h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 12px;
   margin-bottom: 20px;
 }
 
-.dropdown-label {
-  color: #28a745;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.category-dropdown {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  color: #333;
-  min-width: 180px;
-}
-
-.summary-container {
-  text-align: left;
-  color: #333;
-}
-
-.chart-container {
+/* Controls Container (filters, search, sort) */
+.controls-container {
   display: flex;
-  flex-direction: column; /* Stack charts on small screens */
-  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-bottom: 24px;
 }
 
-@media (min-width: 768px) {
-  .chart-container {
-    flex-direction: row; /* Side by side on larger screens */
-    justify-content: space-between;
-  }
+.filter-group, .search-group, .sort-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.chart-box {
-  flex: 1;
-  min-width: 300px; /* Prevent chart from shrinking too small */
+.filter-label, .sort-group span {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.filter-select, .controls-container input[type="text"] {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+}
+
+/* Summary Metrics */
+.summary-metrics {
+  margin-bottom: 24px;
+}
+.summary-metrics p {
+  margin: 4px 0;
+  font-size: 1.1rem;
+  color: #374151;
+}
+.summary-metrics strong {
+  color: #166534; /* Dark green for better readability */
+}
+
+/* Right Column - Charts Container */
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px; /* Space between the line and pie charts */
+}
+
+.line-chart-container, .pie-chart-container {
+  width: 100%;
+  height: 320px;
+}
+
+/* Data Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.data-table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.data-table tbody tr:nth-of-type(even) {
+  background-color: #f9fafb;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f3f4f6;
 }

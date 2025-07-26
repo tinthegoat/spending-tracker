@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // Define an array of colors for the pie chart slices
-const COLORS = ['#4c86b9ff', '#34a18dff', '#a28443ff', '#ac613cff', '#814b9eff', '#a74a58ff'];
+const COLORS = ['#4c86b9ff', '#34a18dff', '#ebb84bff', '#dd7c4cff', '#9455b7ff', '#db5f72ff'];
 
 // This component receives the master list of 'records' as a prop
 function PieChartComponent({ records }) {
