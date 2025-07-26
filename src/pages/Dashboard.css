@@ -44,7 +44,11 @@
 }
 
 .dropdown-label {
+<<<<<<< HEAD
   color: #28a745;
+=======
+  /* color: #1E90FF; */
+>>>>>>> Asa14
   font-weight: 600;
   font-size: 1rem;
 }
