@@ -1,20 +1,20 @@
-
-import React from 'react';
-import './Dashboard.css';
+import React, { useState } from 'react';
 import TotalBox from './TotalBox';
-import Chart from './Line_Chart';
+import Chart from './Chart';
+
 function Dashboard() {
+  const [filteredData, setFilteredData] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState("");
 
   return (
-    <div>
-      {/* Add charts and summary here */}
-      <div className="dashboard-content">
-
-        <div className="container">         
-          <TotalBox />
-          <Chart />
-        </div>   
-      </div>
+    <div className="dashboard-container">
+      <TotalBox
+        onFilteredData={(data, month) => {
+          setFilteredData(data);
+          setSelectedMonth(month);
+        }}
+      />
+      <Chart filteredData={filteredData} selectedMonth={selectedMonth} />
     </div>
   );
 }

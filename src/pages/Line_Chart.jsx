@@ -9,22 +9,22 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-const Chart = ({ selectedMonth }) => {
-  const [totalSpending, setTotalSpending] = useState(0);
+const Chart = ({ filteredData, selectedMonth }) => {
   const [dailyData, setDailyData] = useState([]);
+  const [totalSpending, setTotalSpending] = useState(0);
 
   useEffect(() => {
-    const journalData = JSON.parse(localStorage.getItem('journalData')) || [];
+    if (!filteredData || filteredData.length === 0) {
+      setDailyData([]);
+      setTotalSpending(0);
+      return;
+    }
 
-    const filtered = journalData.filter(entry =>
-      entry.date.startsWith(selectedMonth)
-    );
-
-    const total = filtered.reduce((sum, entry) => sum + Number(entry.amount), 0);
+    const total = filteredData.reduce((sum, entry) => sum + Number(entry.amount), 0);
     setTotalSpending(total);
 
     const dailySpending = Array(31).fill(0);
-    filtered.forEach(entry => {
+    filteredData.forEach(entry => {
       const day = new Date(entry.date).getDate();
       dailySpending[day - 1] += Number(entry.amount);
     });
@@ -35,12 +35,14 @@ const Chart = ({ selectedMonth }) => {
     }));
 
     setDailyData(chartData);
-  }, [selectedMonth]);
+  }, [filteredData]);
 
   return (
     <div className="box box3">
       <div className="summary-container">
-        <h3>Total Spending in {selectedMonth}: ${totalSpending.toFixed(2)}</h3>
+        <h3>
+          Total Spending {selectedMonth ? `in ${selectedMonth}` : '(All Time)'}: ${totalSpending.toFixed(2)}
+        </h3>
       </div>
 
       <div className="line-chart-container" style={{ width: '100%', height: 300 }}>
