@@ -12,17 +12,17 @@ function Journal() {
   const [date, setDate] = React.useState(dayjs().format('YYYY-MM-DD'));
 
   const categories = [
-    { value: 'food', label: 'Food' },
-    { value: 'transport', label: 'Transport' },
-    { value: 'entertainment', label: 'Entertainment' },
-    { value: 'utilities', label: 'Utilities' },
-    { value: 'other', label: 'Other' },
+    { value: 'Food', label: 'Food' },
+    { value: 'Transport', label: 'Transport' },
+    { value: 'Entertainment', label: 'Entertainment' },
+    { value: 'Utilities', label: 'Utilities' },
+    { value: 'Other', label: 'Other' },
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const finalCategory = category === 'other' ? otherCategory : category;
+    const finalCategory = category === 'Other' ? otherCategory : category;
 
     // Generate new ID
     const stored = JSON.parse(localStorage.getItem('journalData')) || [];
@@ -33,7 +33,7 @@ function Journal() {
       description,
       category: finalCategory,
       amount: parseFloat(amount),
-      date, // format: YYYY-MM-DD
+      date, // YYYY-MM-DD
     };
 
     const updated = [...stored, newEntry];
@@ -148,7 +148,7 @@ function Journal() {
               fontWeight: 500,
             }}
           >
-            Add Record
+            Add
           </button>
         </Box>
       </form>

@@ -115,7 +115,7 @@ function TotalBox({ onFilteredData }) {
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
           >
-            <option value="">-- All Months --</option>
+            <option value="">All Months</option>
             {uniqueMonths.map((month, idx) => (
               <option key={idx} value={month}>
                 {month}
@@ -135,7 +135,7 @@ function TotalBox({ onFilteredData }) {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option value="">-- All Categories --</option>
+            <option value="">All Categories</option>
             {categories.map((cat, idx) => (
               <option key={idx} value={cat}>
                 {cat}
@@ -170,12 +170,12 @@ function TotalBox({ onFilteredData }) {
         <table border="1" width="100%" style={{ borderCollapse: "collapse", marginTop: "10px" }}>
           <thead>
             <tr>
-              <th>#</th>
+              <th></th>
               <th>Description</th>
               <th>Category</th>
               <th>Date</th>
               <th>Amount</th>
-              <th>Action</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
