@@ -1,8 +1,37 @@
-/* box1 */
+.container {
+  display: flex;
+  flex-direction: column; /* Stack items on top of each other on small screens */
+  gap: 20px; /* Adds space between the stacked items */
+  padding: 10px;
+}
+
+/* This is the style for each individual box (summary and chart) */
+.box {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* The 'flex: 1' tells the boxes to grow and share space on larger screens */
+  flex: 1; 
+}
+
+/* Media Query for larger screens (like tablets and laptops).
+   If the screen width is 768px or more, these styles will override the defaults.
+*/
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row; /* This places the items side-by-side */
+  }
+}
+
+
+/* --- Your existing styles for dropdowns, etc. can remain below --- */
+
 .dropdown-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* top-left alignment */
+  justify-content: flex-start;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -23,23 +52,6 @@
 }
 
 .summary-container {
-  text-align: left; /* center the summary text */
+  text-align: left;
   color: #333;
-}
-/* Dashboard.css */
-.container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    gap: 10px;
-    
-}
-
-.box {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 10px;
 }

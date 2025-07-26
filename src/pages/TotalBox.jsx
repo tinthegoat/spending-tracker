@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Box1() {
+function TotalBox() {
   const [records, setRecords] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -8,7 +8,7 @@ function Box1() {
   const [categorySpending, setCategorySpending] = useState(0);
 
   useEffect(() => {
-    const stored = localStorage.getItem("spendingRecords");
+    const stored = localStorage.getItem("journalData");
     const data = stored ? JSON.parse(stored) : [];
     setRecords(data);
 
@@ -34,7 +34,6 @@ function Box1() {
     <div className="box">
       <h3 className="title">Spending Summary (All Time) Base on Categories</h3>
 
-      {/* Dropdown container aligned top-left */}
       <div className="dropdown-container">
         <label htmlFor="categoryDropdown" className="dropdown-label">
           Select Category:
@@ -45,7 +44,7 @@ function Box1() {
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
-          <option value="">-- All Categories --</option>
+          <option value="">All Categories</option>
           {categories.map((cat, idx) => (
             <option key={idx} value={cat}>
               {cat}
@@ -54,7 +53,6 @@ function Box1() {
         </select>
       </div>
 
-      {/* Summary container centered */}
       <div className="summary-container">
         <p>
           <strong>Total Spending:</strong> ${totalSpending.toFixed(2)}
@@ -70,4 +68,4 @@ function Box1() {
   );
 }
 
-export default Box1;
+export default TotalBox;

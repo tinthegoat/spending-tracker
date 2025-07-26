@@ -9,7 +9,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-const Box3 = ({ selectedMonth }) => {
+const Chart = ({ selectedMonth }) => {
   const [totalSpending, setTotalSpending] = useState(0);
   const [dailyData, setDailyData] = useState([]);
 
@@ -58,4 +58,4 @@ const Box3 = ({ selectedMonth }) => {
   );
 };
 
-export default Box3;
+export default Chart;

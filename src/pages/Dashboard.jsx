@@ -1,24 +1,20 @@
+<<<<<<< HEAD
+=======
+import React from 'react';
+>>>>>>> 56e36ec653aabb191b48872bc9e31a7ae7a586c4
 import './Dashboard.css';
-import Box1 from './box1';
-import Box3 from './box3';
-import Box4 from './box4';
+import TotalBox from './TotalBox';
+import Chart from './Line_Chart';
 function Dashboard() {
-  
+
   return (
     <div>
-      <h2>Spending Dashboard</h2>
       {/* Add charts and summary here */}
-      <p>This is where the user sees spending analytics.</p>
-      <div classname="dashboard-content">
-        <div classname="container">         
-                     
-          <Box1 />
-          <div className="box box2">Total Spending Overview</div>
-          {/* Line Chart of Spending */}
-          <Box3 />
-          {/* Pie Chart of Spending by Category */}
-          <Box4 />  
-                  
+      <div className="dashboard-content">
+
+        <div className="container">         
+          <TotalBox />
+          <Chart />
         </div>   
       </div>
     </div>
