@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
+
 import React from 'react';
->>>>>>> 56e36ec653aabb191b48872bc9e31a7ae7a586c4
 import './Dashboard.css';
 import TotalBox from './TotalBox';
 import Chart from './Line_Chart';
