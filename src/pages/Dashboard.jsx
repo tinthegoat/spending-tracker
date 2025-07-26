@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TotalBox from './TotalBox';
-import Chart from './Line_Chart';
+import Chart from './Chart';
 function Dashboard() {
 
   return (
