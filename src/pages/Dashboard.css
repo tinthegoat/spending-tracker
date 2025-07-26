@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-.dropdown-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; 
-=======
 .container {
   display: flex;
   flex-direction: column; /* Stack items on top of each other on small screens */
@@ -38,21 +32,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
->>>>>>> origin
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .dropdown-label {
-<<<<<<< HEAD
-<<<<<<< HEAD
   color: #28a745;
-=======
-  /* color: #1E90FF; */
->>>>>>> Asa14
-=======
-  color: #28a745;
->>>>>>> Asa14
   font-weight: 600;
   font-size: 1rem;
 }
@@ -66,27 +51,25 @@
   min-width: 180px;
 }
 
-<<<<<<< HEAD
-
-.container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    gap: 10px;
-    
-}
-
-.box {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 10px;
-}
-=======
 .summary-container {
   text-align: left;
   color: #333;
 }
->>>>>>> origin
+
+.chart-container {
+  display: flex;
+  flex-direction: column; /* Stack charts on small screens */
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    flex-direction: row; /* Side by side on larger screens */
+    justify-content: space-between;
+  }
+}
+
+.chart-box {
+  flex: 1;
+  min-width: 300px; /* Prevent chart from shrinking too small */
+}
