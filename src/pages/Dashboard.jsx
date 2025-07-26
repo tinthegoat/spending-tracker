@@ -1,12 +1,7 @@
-
-import React from 'react';
-import './Dashboard.css';
+import React, { useState } from 'react';
 import TotalBox from './TotalBox';
 import Chart from './Line_Chart';
-import PieChartComponent from './Pie_chart';
 function Dashboard() {
-  
-  
 
   return (
     <div>
@@ -16,7 +11,6 @@ function Dashboard() {
         <div className="container">         
           <TotalBox />
           <Chart />
-          <PieChartComponent />
         </div>   
       </div>
     </div>
