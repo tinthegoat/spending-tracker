@@ -1,14 +1,13 @@
-/* box1 */
 .dropdown-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* top-left alignment */
+  justify-content: flex-start; 
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .dropdown-label {
-  color: #1E90FF;
+  color: #28a745;
   font-weight: 600;
   font-size: 1rem;
 }
@@ -22,11 +21,7 @@
   min-width: 180px;
 }
 
-.summary-container {
-  text-align: left; /* center the summary text */
-  color: #333;
-}
-/* Dashboard.css */
+
 .container {
     display: grid;
     grid-template-columns: 50% 50%;

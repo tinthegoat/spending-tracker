@@ -6,7 +6,6 @@ function Dashboard() {
   
   return (
     <div>
-      {/* Add charts and summary here */}
       <div classname="dashboard-content">
         <div classname="container">         
                      
