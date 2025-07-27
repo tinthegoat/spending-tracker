@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import TotalBox from './TotalBox';
+<<<<<<< HEAD
 import Charts from './Charts'; // Import our new component
 import './Dashboard.css';
+=======
+import Chart from './Chart';
+import './Dashboard.css'; // Assuming you have a CSS file for styling
+>>>>>>> c084903270603d3e8ad8b520e3ba8cc8f7d5835f
 
 function Dashboard() {
   const [filteredData, setFilteredData] = useState([]);
@@ -26,6 +31,7 @@ function Dashboard() {
           setSelectedMonth(month);
         }}
       />
+<<<<<<< HEAD
 
       {/* This is our RIGHT column */}
       <Charts
@@ -33,6 +39,8 @@ function Dashboard() {
         pieChartData={allRecords}   // The pie chart uses all data
         selectedMonth={selectedMonth}
       />
+=======
+>>>>>>> c084903270603d3e8ad8b520e3ba8cc8f7d5835f
     </div>
   );
 }

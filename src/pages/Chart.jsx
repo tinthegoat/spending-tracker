@@ -38,7 +38,7 @@ const Chart = ({ filteredData, selectedMonth }) => {
   }, [filteredData]);
 
   return (
-    <div className="box box3">
+    <div className="line-chart">
       <div className="line-chart-container" style={{ width: '100%', height: 300 }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={dailyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
