@@ -13,7 +13,7 @@
     margin-top: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .box {
         grid-template-columns: 1fr;
     }

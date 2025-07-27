@@ -1,12 +1,27 @@
-# React + Vite
+# SpendWise: A Simple Spending Tracker
+ 
+ 
+## Project Objective
+ 
+SpendWise is a web application designed to help you easily track your daily expenses. The goal is to provide a clean and simple interface for logging and visualizing your spending history, allowing for better financial awareness.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+**Features**
+ 
+**Spending Journal** - Add and manage your expenses with details like **description**, **amount**, **date**, and **category**.  
+**Dashboard Overview** - View a summary of your total spending.
+**Visual Charts** - See an interactive **line chart & pie chart** of your expenses.  
+**Filter & Sort** - Filter your spending by **month** or **category**, and **sort** your transactions by **date**.
+ **Search Functionality** - Find specific transactions by searching for keywords.
+**Local Storage** - Your spending data is saved directly in your browser using local storage, so your information persists even after you close the tab.
+ 
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🖼 Screenshots
 
-## Expanding the ESLint configuration
+### ✅ Dashboard View
+![Dashboard Screenshot](screenshots/dashboard.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### ✅ Spending Journal
+![Journal Screenshot](screenshots/journal.png)

@@ -8,7 +8,7 @@ function TotalBox({ onFilteredData }) {
   const [records, setRecords] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState(""); // ✅ Month filter
+  const [selectedMonth, setSelectedMonth] = useState(""); 
   const [totalSpending, setTotalSpending] = useState(0);
   const [categorySpending, setCategorySpending] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
@@ -18,17 +18,46 @@ function TotalBox({ onFilteredData }) {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AA00FF", "#FF4444"];
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("journalData")) || [];
-    const sorted = [...stored].sort((a, b) => new Date(b.date) - new Date(a.date));
-    setRecords(sorted);
-    setFilteredData(sorted);
+    const stored = JSON.parse(localStorage.getItem("journalData"));
 
-    const uniqueCats = [...new Set(stored.map((rec) => rec.category).filter(Boolean))];
-    setCategories(uniqueCats);
+    if (!stored || stored.length === 0) {
+      // fetch data from public/spending_data.json
+      fetch("/spending_data.json")
+        .then((res) => res.json())
+        .then((dummyData) => {
 
-    const total = stored.reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
-    setTotalSpending(total);
+          const formattedData = dummyData.map((item, idx) => ({
+            id: idx + 1,
+            description: item.description,
+            category: item.category,
+            amount: Number(item.amount),
+            date: item.date
+          }));
+
+          localStorage.setItem("journalData", JSON.stringify(formattedData));
+          setRecords(formattedData);
+          setFilteredData(formattedData);
+
+          const uniqueCats = [...new Set(formattedData.map((rec) => rec.category).filter(Boolean))];
+          setCategories(uniqueCats);
+
+          const total = formattedData.reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
+          setTotalSpending(total);
+        })
+        .catch((err) => console.error("Error loading dummy data:", err));
+    } else {
+      const sorted = [...stored].sort((a, b) => new Date(b.date) - new Date(a.date));
+      setRecords(sorted);
+      setFilteredData(sorted);
+
+      const uniqueCats = [...new Set(stored.map((rec) => rec.category).filter(Boolean))];
+      setCategories(uniqueCats);
+
+      const total = stored.reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
+      setTotalSpending(total);
+    }
   }, []);
+
 
   useEffect(() => {
     let filtered = [...records];
@@ -45,7 +74,7 @@ function TotalBox({ onFilteredData }) {
     const totalCat = filtered.reduce((sum, rec) => sum + Number(rec.amount || 0), 0);
     setCategorySpending(totalCat);
 
-    // Send filtered data to LineChart for monthly view
+    // send filtered data to LineChart for monthly view
     if (onFilteredData) {
       onFilteredData(filtered);
     }
@@ -85,7 +114,7 @@ function TotalBox({ onFilteredData }) {
     setTotalSpending(total);
   };
 
-  // Extract unique months from data
+  // get months from data
   const uniqueMonths = [
     ...new Set(records.map((rec) => rec.date.slice(0, 7))) // YYYY-MM format
   ];
@@ -124,7 +153,7 @@ function TotalBox({ onFilteredData }) {
           </select>
         </div>
 
-        {/* ✅ Category Dropdown */}
+        {/* Category Dropdown */}
         <div className="dropdown-container">
           <label htmlFor="categoryDropdown" className="dropdown-label">
             Select Category:
@@ -230,7 +259,7 @@ function TotalBox({ onFilteredData }) {
       )}
       </div>
 
-      <Chart filteredData={filteredData} selectedMonth={selectedMonth} />
+      <Chart className="line-Chart" filteredData={filteredData} selectedMonth={selectedMonth} />
       
       </>
   );
