@@ -38,5 +38,6 @@ SpendWise is a web application designed to help you easily track your daily expe
 - Material-UI (MUI) 
 - LocalStorage 
 - Vite 
+- Deployment: GitHub Pages (via pnpm run deploy)
 
 ---
