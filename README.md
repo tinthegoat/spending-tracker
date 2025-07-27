@@ -1,5 +1,8 @@
 # SpendWise: A Simple Spending Tracker
- 
+ **Members** 
+ - NYUNT TIN
+ - PYAE PHYO NANDAR OO
+ - PHANTHIRA KOSITJAROENKUL
  
 ## Project Objective
  
@@ -18,10 +21,22 @@ SpendWise is a web application designed to help you easily track your daily expe
  
 ---
 
-## 🖼 Screenshots
+## Screenshots
 
-### ✅ Dashboard View
+### Dashboard View
 ![Dashboard Screenshot](screenshots/dashboard.png)
 
-### ✅ Spending Journal
+### Spending Journal
 ![Journal Screenshot](screenshots/journal.png)
+
+---
+
+**Tech Stack**
+
+- React.js 
+- Recharts 
+- Material-UI (MUI) 
+- LocalStorage 
+- Vite 
+
+---

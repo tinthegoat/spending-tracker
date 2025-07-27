@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  flex-direction: column; /* Stack items on top of each other on small screens */
-  gap: 20px; /* Adds space between the stacked items */
+  flex-direction: column; 
+  gap: 20px; 
   padding: 10px;
 }
 

@@ -12,11 +12,11 @@ function Journal() {
   const [date, setDate] = React.useState(dayjs().format('YYYY-MM-DD'));
 
   const categories = [
-    { value: 'Food', label: 'Food' },
-    { value: 'Transport', label: 'Transport' },
-    { value: 'Entertainment', label: 'Entertainment' },
-    { value: 'Utilities', label: 'Utilities' },
-    { value: 'Other', label: 'Other' },
+    { value: 'food', label: 'Food' },
+    { value: 'transport', label: 'Transport' },
+    { value: 'entertainment', label: 'Entertainment' },
+    { value: 'utilities', label: 'Utilities' },
+    { value: 'other', label: 'Other' },
   ];
 
   const handleSubmit = (e) => {
@@ -24,7 +24,6 @@ function Journal() {
 
     const finalCategory = category === 'Other' ? otherCategory : category;
 
-    // Generate new ID
     const stored = JSON.parse(localStorage.getItem('journalData')) || [];
     const newId = stored.length > 0 ? Math.max(...stored.map((item) => item.id || 0)) + 1 : 1;
 
