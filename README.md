@@ -12,7 +12,8 @@ SpendWise is a web application designed to help you easily track your daily expe
 
 **Features**
  
-**Spending Journal** - Add and manage your expenses with details like **description**, **amount**, **date**, and **category**.  
+**Spending Journal** - Add and manage your expenses with details like **description**, **amount**, **date**, and **category**. Enter your **customized Category**in "Other".
+
 **Dashboard Overview** - View a summary of your total spending.
 **Visual Charts** - See an interactive **line chart & pie chart** of your expenses.  
 **Filter & Sort** - Filter your spending by **month** or **category**, and **sort** your transactions by **date**.
