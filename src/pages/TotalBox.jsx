@@ -15,7 +15,7 @@ function TotalBox({ onFilteredData }) {
 
   const searchRef = useRef();
 
-  const COLORS = ["#56abf6ff", "#4cbca8ff", "#f8d17bff", "#fea376ff", "#cd7af6ff", "#f98080ff"];
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AA00FF", "#FF4444"];
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("journalData")) || [];
@@ -205,9 +205,6 @@ function TotalBox({ onFilteredData }) {
         </table>
       </div>
 
-<<<<<<< HEAD
-    </div>
-=======
       {/* Pie Chart */}
       {pieData.length > 0 && (
         <div className="pie-chart" style={{ width: "100%", height: 250, marginTop: "15px" }}>
@@ -236,7 +233,6 @@ function TotalBox({ onFilteredData }) {
       <Chart filteredData={filteredData} selectedMonth={selectedMonth} />
       
       </>
->>>>>>> c084903270603d3e8ad8b520e3ba8cc8f7d5835f
   );
 }
 

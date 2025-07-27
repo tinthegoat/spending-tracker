@@ -1,48 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import TotalBox from './TotalBox';
-<<<<<<< HEAD
-import Charts from './Charts'; // Import our new component
-import './Dashboard.css';
-=======
-import Chart from './Chart';
-import './Dashboard.css'; // Assuming you have a CSS file for styling
->>>>>>> c084903270603d3e8ad8b520e3ba8cc8f7d5835f
+import React, { useEffect, useState } from 'react';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer
+} from 'recharts';
 
-function Dashboard() {
-  const [filteredData, setFilteredData] = useState([]);
-  const [allRecords, setAllRecords] = useState([]);
-  const [selectedMonth, setSelectedMonth] = useState("");
+const Chart = ({ filteredData, selectedMonth }) => {
+  const [dailyData, setDailyData] = useState([]);
+  const [totalSpending, setTotalSpending] = useState(0);
 
-  // This effect runs once to load all data from local storage
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('journalData')) || [];
-    setAllRecords(stored);
-    setFilteredData(stored); // Initially, the filtered data is all data
-  }, []);
+    if (!filteredData || filteredData.length === 0) {
+      setDailyData([]);
+      setTotalSpending(0);
+      return;
+    }
+
+    const total = filteredData.reduce((sum, entry) => sum + Number(entry.amount), 0);
+    setTotalSpending(total);
+
+    const dailySpending = Array(31).fill(0);
+    filteredData.forEach(entry => {
+      const day = new Date(entry.date).getDate();
+      dailySpending[day - 1] += Number(entry.amount);
+    });
+
+    const chartData = dailySpending.map((amount, idx) => ({
+      day: (idx + 1).toString(),
+      amount,
+    }));
+
+    setDailyData(chartData);
+  }, [filteredData]);
 
   return (
-    <div className="dashboard-layout">
-      {/* This is our LEFT column */}
-      <TotalBox
-        records={allRecords}
-        setRecords={setAllRecords} // Pass this down to handle deletions
-        onFilteredData={(data, month) => {
-          setFilteredData(data);
-          setSelectedMonth(month);
-        }}
-      />
-<<<<<<< HEAD
-
-      {/* This is our RIGHT column */}
-      <Charts
-        lineChartData={filteredData} // The line chart uses filtered data
-        pieChartData={allRecords}   // The pie chart uses all data
-        selectedMonth={selectedMonth}
-      />
-=======
->>>>>>> c084903270603d3e8ad8b520e3ba8cc8f7d5835f
+    <div className="line-chart">
+      <div className="line-chart-container" style={{ width: '100%', height: 300 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={dailyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="day" label={{ value: 'Day', position: 'insideBottomRight', offset: -5 }} />
+            <YAxis label={{ value: 'Amount ($)', angle: -90, position: 'insideLeft' }} />
+            <Tooltip />
+            <Line type="monotone" dataKey="amount" stroke="#0077cc" strokeWidth={2} dot={{ r: 3 }} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
-}
+};
 
-export default Dashboard;
+export default Chart;
