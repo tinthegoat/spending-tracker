@@ -175,11 +175,11 @@ function TotalBox({ onFilteredData }) {
 
         <div className="summary-container">
           <p>
-            <strong>Total Spending:</strong> ${totalSpending.toFixed(2)}
+            <strong>Total Spending:</strong> Baht {totalSpending.toFixed(2)}
           </p>
           {(selectedCategory || selectedMonth) && (
             <p>
-              <strong>Filtered Spending:</strong> ${categorySpending.toFixed(2)}
+              <strong>Filtered Spending:</strong> Baht {categorySpending.toFixed(2)}
             </p>
           )}
         </div>
@@ -215,7 +215,7 @@ function TotalBox({ onFilteredData }) {
                   <td>{item.description}</td>
                   <td>{item.category}</td>
                   <td>{item.date}</td>
-                  <td>${Number(item.amount).toFixed(2)}</td>
+                  <td>Baht {Number(item.amount).toFixed(2)}</td>
                   <td>
                     <Button color="error" onClick={() => handleDelete(item.id)}>
                       Delete

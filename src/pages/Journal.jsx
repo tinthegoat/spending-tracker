@@ -128,7 +128,7 @@ function Journal() {
         {description && amount && category && (
           <Box sx={{ mt: 2, p: 2, bgcolor: '#e0f7fa', borderRadius: 1 }}>
             <p><strong>Description:</strong> {description}</p>
-            <p><strong>Amount:</strong> ${amount}</p>
+            <p><strong>Amount:</strong> Baht{amount}</p>
             <p><strong>Date:</strong> {date}</p>
             <p><strong>Category:</strong> {category === 'other' ? otherCategory : category}</p>
           </Box>
