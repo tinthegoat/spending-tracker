@@ -5,92 +5,55 @@
   padding: 10px;
 }
 
-/* This is the style for each individual box (summary and chart) */
-.box {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  /* The 'flex: 1' tells the boxes to grow and share space on larger screens */
-  flex: 1; 
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* Media Query for larger screens (like tablets and laptops).
-   If the screen width is 768px or more, these styles will override the defaults.
-*/
-@media (min-width: 768px) {
-  .container {
-    flex-direction: row; /* This places the items side-by-side */
-  }
+.dropdown-label {
+  color: #28a745;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
+.category-dropdown {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  color: #333;
+  min-width: 180px;
+}
 
-/* --- Your existing styles for dropdowns, etc. can remain below --- */
+.container {
+  display: flex;
+  flex-direction: column; /* Stack items on top of each other on small screens */
+  gap: 20px; /* Adds space between the stacked items */
+  padding: 10px;
+}
 
 .dropdown-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.filter-label, .sort-group span {
-  font-weight: 500;
-  font-size: 0.9rem;
-  color: #4b5563;
-}
-
-.filter-select, .controls-container input[type="text"] {
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
+.dropdown-label {
+  color: #28a745;
+  font-weight: 600;
   font-size: 1rem;
 }
 
-/* Summary Metrics */
-.summary-metrics {
-  margin-bottom: 24px;
-}
-.summary-metrics p {
-  margin: 4px 0;
-  font-size: 1.1rem;
-  color: #374151;
-}
-.summary-metrics strong {
-  color: #166534; /* Dark green for better readability */
-}
-
-/* Right Column - Charts Container */
-.charts-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px; /* Space between the line and pie charts */
-}
-
-.line-chart-container, .pie-chart-container {
-  width: 100%;
-  height: 320px;
-}
-
-.summary-container {
-  text-align: left;
+.category-dropdown {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
   color: #333;
-}
-
-.chart-container {
-  display: flex;
-  flex-direction: column; /* Stack charts on small screens */
-  gap: 20px;
-}
-
-@media (min-width: 768px) {
-  .chart-container {
-    flex-direction: row; /* Side by side on larger screens */
-    justify-content: space-between;
-  }
-}
-
-.chart-box {
-  flex: 1;
-  min-width: 300px; /* Prevent chart from shrinking too small */
+  min-width: 180px;
 }
