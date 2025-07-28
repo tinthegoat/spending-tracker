@@ -44,7 +44,7 @@ const Chart = ({ filteredData, selectedMonth }) => {
           <LineChart data={dailyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="day" label={{ value: 'Day', position: 'insideBottomRight', offset: -5 }} />
-            <YAxis label={{ value: 'Amount ($)', angle: -90, position: 'insideLeft' }} />
+            <YAxis label={{ value: 'Amount (Baht)', angle: -90, position: 'insideLeft' }} />
             <Tooltip />
             <Line type="monotone" dataKey="amount" stroke="#0077cc" strokeWidth={2} dot={{ r: 3 }} />
           </LineChart>

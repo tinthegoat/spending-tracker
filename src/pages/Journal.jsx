@@ -22,7 +22,7 @@ function Journal() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const finalCategory = category === 'Other' ? otherCategory : category;
+    const finalCategory = category === 'other' ? otherCategory : category;
 
     const stored = JSON.parse(localStorage.getItem('journalData')) || [];
     const newId = stored.length > 0 ? Math.max(...stored.map((item) => item.id || 0)) + 1 : 1;
@@ -72,7 +72,7 @@ function Journal() {
         />
 
         <TextField
-          label="Amount ($)"
+          label="Amount (Baht)"
           type="number"
           variant="outlined"
           fullWidth

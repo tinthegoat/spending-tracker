@@ -11,7 +11,7 @@ const DataTable = ({ data }) => {
             <th>Date</th>
             <th>Description</th>
             <th>Category</th>
-            <th>Amount ($)</th>
+            <th>Amount (Baht)</th>
           </tr>
         </thead>
         <tbody>
