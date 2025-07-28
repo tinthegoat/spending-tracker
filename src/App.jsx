@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Journal from './pages/Journal';
 import './App.css';
 
 function App() {
   return (
-    <Router basename='/spending-tracker'>
+    <Router>
       <nav className='nav-container'>
         <p className='heading'>SpendWise</p>
         <div className='navbar'>
