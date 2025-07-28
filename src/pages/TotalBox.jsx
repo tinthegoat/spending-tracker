@@ -119,7 +119,7 @@ function TotalBox({ onFilteredData }) {
     ...new Set(records.map((rec) => rec.date.slice(0, 7))) // YYYY-MM format
   ];
 
-  // Pie chart data for selected month
+  // pie chart data for selected month
   const pieData = categories.map((cat) => {
     const total = filteredData
       .filter((item) => item.category === cat)
@@ -133,7 +133,7 @@ function TotalBox({ onFilteredData }) {
       <div className="totalBox">
         <h3 className="title">Spending Summary (Filtered by Month & Category)</h3>
 
-        {/* Month Dropdown */}
+        {/* month dropdown */}
         <div className="dropdown-container" style={{ marginBottom: "10px" }}>
           <label htmlFor="monthDropdown" className="dropdown-label">
             Select Month:
@@ -153,7 +153,7 @@ function TotalBox({ onFilteredData }) {
           </select>
         </div>
 
-        {/* Category Dropdown */}
+        {/* category dropdown */}
         <div className="dropdown-container">
           <label htmlFor="categoryDropdown" className="dropdown-label">
             Select Category:
@@ -184,7 +184,7 @@ function TotalBox({ onFilteredData }) {
           )}
         </div>
 
-        {/* Search + Sort Controls */}
+        {/* search and sort */}
         <div style={{ marginTop: "15px", marginBottom: "10px" }}>
           <input type="text" placeholder="Search..." ref={searchRef} />
           <Button onClick={handleSearch} variant="contained" size="small" style={{ marginLeft: "10px" }}>
@@ -195,7 +195,7 @@ function TotalBox({ onFilteredData }) {
           <Button onClick={sortByDateDesc}>🔽</Button>
         </div>
 
-        {/* Data Table */}
+        {/* data table */}
         <table border="1" width="100%" style={{ borderCollapse: "collapse", marginTop: "10px" }}>
           <thead>
             <tr>
@@ -234,7 +234,7 @@ function TotalBox({ onFilteredData }) {
         </table>
       </div>
 
-      {/* Pie Chart */}
+      {/* pie chart */}
       {pieData.length > 0 && (
         <div className="pie-chart" style={{ width: "100%", height: 250, marginTop: "15px" }}>
           <PieChart width={400} height={250}>

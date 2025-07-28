@@ -40,7 +40,6 @@ function Journal() {
 
     console.log('Saved:', newEntry);
 
-    // Reset form
     setDescription('');
     setCategory('');
     setOtherCategory('');
